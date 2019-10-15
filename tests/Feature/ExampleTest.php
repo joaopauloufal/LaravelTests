@@ -22,6 +22,15 @@ class ExampleTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testAuthentication(){
+
+        $user = factory(\App\User::class)->create();
+
+        $response = $this->actingAs($user)->get('/home');
+        $response->assertStatus(200);
+
+    }
+
     public function testDatabaseUsers(){
 
 
