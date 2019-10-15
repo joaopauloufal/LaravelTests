@@ -8,15 +8,21 @@ use Tests\TestCase;
 
 class AccountTest extends TestCase
 {
+
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function testExample()
-    {
-        $response = $this->get('/');
+    public function testApiList(){
 
-        $response->assertStatus(200);
+        $data = factory(\App\Account::class, 20)->create();
+
+        $response = $this->get('/api/accounts');
+        $response->assertStatus(200)->assertJson(['data'=>$data->toArray()]);
+        //$response->assertStatus(200)->assertExactJson(['data'=>$data->toArray()]);
+
     }
 }

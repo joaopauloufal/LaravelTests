@@ -49494,8 +49494,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/joao/Aulas/LaravelTestes/laravel_testes/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/joao/Aulas/LaravelTestes/laravel_testes/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/joao/LaravelTests/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/joao/LaravelTests/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
