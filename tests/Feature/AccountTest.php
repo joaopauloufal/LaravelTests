@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class AccountTest extends TestCase
 {
@@ -73,6 +75,21 @@ class AccountTest extends TestCase
         $response = $this->json('DELETE', '/api/accounts/'. $data->id);
 
         $response->assertStatus(200)->assertJson($data->toArray());
+
+    }
+
+    public function testApiUploadOnInsert(){
+
+        $data = factory(\App\Account::class)->make();
+        $data = $data->toArray();
+
+        Storage::fake('public');
+
+        $data['bank_image'] = UploadedFile::fake()->image('itau.jpg');
+
+        $response = $this->json('POST', 'api/accounts', $data);
+
+        Storage::disk('public')->assertExists('images/itau.jpg');
 
     }
 }
