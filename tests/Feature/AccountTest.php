@@ -25,4 +25,24 @@ class AccountTest extends TestCase
         //$response->assertStatus(200)->assertExactJson(['data'=>$data->toArray()]);
 
     }
+
+    public function testApiView(){
+
+        $data = factory(\App\Account::class)->create();
+
+        $response = $this->json('GET', '/api/accounts/'. $data->id);
+
+        $response->assertStatus(200)->assertJson($data->toArray());
+
+    }
+
+    public function testApiInsert(){
+
+        $data = factory(\App\Account::class)->make();
+
+        $response = $this->json('POST', '/api/accounts/', $data->toArray());
+
+        $response->assertStatus(200)->assertJson($data->toArray());
+
+    }
 }
