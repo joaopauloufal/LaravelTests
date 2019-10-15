@@ -7,6 +7,9 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      *
@@ -17,5 +20,18 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+    }
+
+    public function testDatabaseUsers(){
+
+
+        factory(\App\User::class)->create([
+            'email' => 'teste@teste.com'
+        ]);
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'teste@teste.com'
+        ]);
+
     }
 }
