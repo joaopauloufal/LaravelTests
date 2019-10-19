@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group([], function () {
 
-    Route::resource('/accounts', 'Api\AccountController');
+    Route::resource('/accounts', 'Api\AccountController')->middleware('auth:api');
     Route::resource('/banks', 'Api\BankController');
     Route::resource('/users', 'Api\UserController');
 
